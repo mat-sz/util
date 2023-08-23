@@ -1,0 +1,11 @@
+.col {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  min-height: 0;
+  max-height: 100%;
+
+  & > * {
+    width: 100%;
+  }
+}

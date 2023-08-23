@@ -1,0 +1,45 @@
+.select {
+  background: var(--color-bg-dark);
+  color: var(--color-fg);
+  border-radius: 5px;
+  padding: 30px;
+  margin-bottom: 10px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:hover {
+    background: var(--color-bg);
+  }
+
+  svg {
+    color: var(--color-fg);
+    font-size: 3rem;
+  }
+
+  input {
+    opacity: 0.001;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    cursor: pointer;
+  }
+
+  .preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info {
+    span {
+      margin: 0 5px;
+    }
+  }
+}

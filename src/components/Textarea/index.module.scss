@@ -1,0 +1,184 @@
+.wrapper {
+  background: var(--color-bg-dark);
+  color: var(--color-fg);
+  border: none;
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .controls {
+    display: flex;
+    align-items: center;
+
+    background: var(--color-primary);
+    padding: 5px 10px;
+    border-start-start-radius: 5px;
+    border-start-end-radius: 5px;
+  }
+
+  button {
+    background: none;
+    padding: 5px;
+    height: auto;
+  }
+
+  .textarea {
+    background: transparent;
+    padding: 0;
+    resize: none;
+    padding: 10px;
+    display: block;
+    flex: 1;
+    width: 100%;
+    font-size: 1rem;
+
+    &.code {
+      font-family: 'Courier New', Courier, monospace;
+    }
+  }
+
+  .input {
+    overflow-y: scroll;
+    height: 100%;
+    max-height: 100%;
+    min-height: 0;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+
+  &.flex {
+    flex: 1;
+  }
+
+  .regexp {
+    display: flex;
+    align-items: center;
+
+    .textarea {
+      font-size: 1rem;
+    }
+
+    .regexpDelimiter {
+      font-family: 'Courier New', Courier, monospace;
+      padding: 5px;
+      user-select: none;
+
+      &:first-child {
+        padding-right: 0;
+      }
+    }
+
+    .flags {
+      position: relative;
+      cursor: pointer;
+
+      .flagsMenu {
+        position: absolute;
+        right: 0;
+        top: 100%;
+        display: none;
+        background: var(--color-primary);
+        border-radius: 5px;
+        z-index: 999;
+
+        .flag {
+          display: flex;
+          align-items: center;
+          width: 250px;
+          padding: 5px 10px;
+          border-radius: 5px;
+
+          &:hover {
+            background: var(--color-primary-soft);
+          }
+
+          & > div {
+            flex: 1;
+
+            span {
+              display: block;
+            }
+
+            span:first-child {
+              font-weight: 600;
+            }
+
+            span:last-child {
+              font-size: 0.8rem;
+              color: var(--color-fg-soft);
+            }
+          }
+
+          & > span,
+          & > svg {
+            margin: 5px;
+            margin-right: 0;
+            width: 1rem;
+          }
+        }
+      }
+
+      &.flagsShow {
+        .flagsMenu {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .box {
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+
+    .layers {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      overflow: visible;
+    }
+
+    .layer {
+      padding: 5px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      color: transparent;
+
+      &.active {
+        .segmentHighlight {
+          box-shadow: inset 0 0 0 2px gold;
+        }
+      }
+    }
+
+    .layer:nth-child(2n) {
+      .segmentHighlight {
+        background: #4444aa;
+      }
+    }
+
+    .layer:nth-child(2n + 1) {
+      .segmentHighlight {
+        background: #2222aa;
+      }
+    }
+
+    .textarea {
+      flex: 1;
+      padding: 5px;
+      font-size: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+  }
+}

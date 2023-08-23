@@ -1,0 +1,98 @@
+:root {
+  --color-accent: #ff6f06;
+  --color-bg-dark: #141519;
+  --color-bg: #1b1b20;
+  --color-bg-soft: #25252d;
+  --color-primary: #35353f;
+  --color-primary-soft: #57576c;
+  --color-fg-dark: #000000;
+  --color-fg-soft: #cccccc;
+  --color-fg: #ffffff;
+  --green: #3ea74e;
+  --green-soft: #3ea74ecc;
+  --red: #ff5c5c;
+  --red-soft: #ff5c5ccc;
+  --main-padding: 15px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+input,
+button,
+textarea,
+a {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+button {
+  background: var(--color-primary);
+  color: var(--color-fg);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-primary-soft);
+  }
+}
+
+input,
+select {
+  background: var(--color-bg-dark);
+  color: var(--color-fg);
+  border: none;
+  border-radius: 5px;
+  outline: none !important;
+
+  &:hover,
+  &:focus {
+    background: var(--color-bg);
+  }
+}
+
+textarea {
+  background: var(--color-bg-dark);
+  color: var(--color-fg);
+  border: none;
+  border-radius: 5px;
+  outline: none !important;
+}
+
+option {
+  background: var(--color-bg-dark);
+  color: var(--color-fg);
+  padding: 0;
+}
+
+a {
+  color: var(--color-fg-soft);
+  text-decoration: none;
+}
+
+body {
+  background: var(--color-bg-soft);
+  color: var(--color-fg);
+  margin: 0;
+
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,43 @@
+.wrapper {
+  background: var(--color-bg-dark);
+  color: var(--color-fg);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  padding-inline-end: 5px;
+  margin-bottom: 10px;
+  height: 33px;
+
+  display: flex;
+  align-items: center;
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+
+  button {
+    background: none;
+    padding: 5px;
+    height: auto;
+  }
+
+  &:not(.readonly) {
+    &:hover,
+    &:focus,
+    &:focus-within {
+      background: var(--color-bg);
+    }
+  }
+
+  .input {
+    background: transparent;
+    padding: 0;
+    flex: 1;
+
+    &:hover,
+    &:focus {
+      background: transparent;
+    }
+  }
+}
