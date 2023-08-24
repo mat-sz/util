@@ -4,6 +4,10 @@
   border: none;
   border-radius: 5px;
 
+  &:not(.wrapperRegexp) {
+    min-height: 600px;
+  }
+
   display: flex;
   flex-direction: column;
   overflow: hidden;

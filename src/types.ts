@@ -5,6 +5,8 @@ export interface ToolInfo {
   name: string;
   icon: React.ReactNode;
   Component: React.FC;
+  keywords?: string;
+  description?: string;
 }
 
 export interface GroupInfo {

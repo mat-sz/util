@@ -24,7 +24,7 @@ export const Component: React.FC = () => {
   usePaste(updateFile);
 
   return (
-    <Grid cols={2}>
+    <Grid m={2}>
       <Col>
         <Label title="Input:" />
         <FileSelect file={file} onChange={updateFile} />

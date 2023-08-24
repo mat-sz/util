@@ -16,6 +16,10 @@
     transform-origin: top left;
     cursor: grab;
 
+    background: white
+      url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAAAxSURBVDhPY2RgYBABYnzgDT5JxlEDGIZJGBBIBvjTCSgMCAG8CW3UAAZwQiIEaBuIACBfCLFwf0bOAAAAAElFTkSuQmCC')
+      center center;
+
     &:active {
       cursor: grabbing;
     }

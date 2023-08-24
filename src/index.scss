@@ -19,6 +19,32 @@
   box-sizing: border-box;
 }
 
+/* Firefox */
+* {
+  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  background-clip: content-box;
+  border: 5px solid transparent;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 3px solid transparent;
+}
+
 body,
 input,
 button,
@@ -78,14 +104,6 @@ body {
   background: var(--color-bg-soft);
   color: var(--color-fg);
   margin: 0;
-
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 100%;
 }
 
 #root {
@@ -95,4 +113,32 @@ body {
   flex: 1;
   width: 100%;
   height: 100%;
+}
+
+.w-color-editable-input {
+  background: none !important;
+  box-shadow: none !important;
+  margin-bottom: 10px;
+
+  input {
+    padding: 5px !important;
+    box-shadow: none !important;
+    width: 100% !important;
+    text-align: center;
+    background: var(--color-primary) !important;
+    color: var(--color-fg) !important;
+    border: none;
+    border-radius: 5px;
+    outline: none !important;
+    margin-bottom: 5px;
+
+    &:hover,
+    &:focus {
+      background: var(--color-primary-soft) !important;
+    }
+  }
+
+  span {
+    color: var(--color-fg) !important;
+  }
 }

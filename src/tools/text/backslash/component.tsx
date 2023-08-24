@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { addSlashes, removeSlashes } from 'slashes';
 
 import { Grid } from '../../../components/Grid/index.js';
 import { Col } from '../../../components/Col/index.js';
@@ -12,18 +13,18 @@ export const Component: React.FC = () => {
   const onChangeEncoded = (data: string) => {
     setEncoded(data);
     try {
-      setPlaintext(decodeURIComponent(data));
+      setPlaintext(removeSlashes(data));
     } catch {
       // Invalid
     }
   };
   const onChangePlaintext = (data: string) => {
     setPlaintext(data);
-    setEncoded(encodeURIComponent(data));
+    setEncoded(addSlashes(data));
   };
 
   return (
-    <Grid cols={2}>
+    <Grid m={2}>
       <Col>
         <Label title="Input:" />
         <Textarea

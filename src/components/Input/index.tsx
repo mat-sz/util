@@ -6,7 +6,7 @@ import styles from './index.module.scss';
 import { Button } from '../Button/index.js';
 import { copy } from '../../helpers/copy.js';
 
-interface InputProps
+export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   onChange?: (value: string) => void;
   icon?: React.ReactNode;

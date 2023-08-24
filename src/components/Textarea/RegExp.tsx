@@ -103,7 +103,7 @@ export const TextareaRegExp: React.FC<InputProps> = ({
 
   return (
     <div
-      className={clsx(styles.wrapper, className, {
+      className={clsx(styles.wrapper, styles.wrapperRegexp, className, {
         [styles.flex]: flex,
         [styles.readonly]: props.readOnly,
       })}

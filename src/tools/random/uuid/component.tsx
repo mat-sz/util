@@ -35,7 +35,7 @@ export const Component: React.FC = () => {
   const [info, setInfo] = useState({ type: 'Invalid' });
 
   return (
-    <Grid cols={2}>
+    <Grid m={2}>
       <Col>
         <Label title="Parse:" />
         <Input

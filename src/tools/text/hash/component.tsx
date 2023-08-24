@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
-import { MD5, SHA1, SHA224, SHA256, SHA384, SHA512, SHA3 } from 'crypto-js';
+import {
+  MD5,
+  SHA1,
+  SHA224,
+  SHA256,
+  SHA384,
+  SHA512,
+  SHA3,
+  RIPEMD160,
+} from 'crypto-js';
 import { str } from 'crc-32';
 
 import { Grid } from '../../../components/Grid/index.js';
@@ -37,13 +46,17 @@ const functions = [
     name: 'SHA3',
     fn: SHA3,
   },
+  {
+    name: 'RIPEMD160',
+    fn: RIPEMD160,
+  },
 ];
 
 export const Component: React.FC = () => {
   const [plaintext, setPlaintext] = useState('');
 
   return (
-    <Grid cols={2}>
+    <Grid m={2}>
       <Col>
         <Label title="Input:" />
         <Textarea
@@ -57,7 +70,7 @@ export const Component: React.FC = () => {
         <Label title="CRC32:" />
         <Input
           readOnly
-          value={(str(plaintext) >> 0).toString(16).padStart(8, '0')}
+          value={(str(plaintext) >>> 0).toString(16).padStart(8, '0')}
         />
         {functions.map(hashfn => (
           <React.Fragment key={hashfn.name}>

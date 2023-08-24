@@ -147,7 +147,7 @@ export const Component: React.FC = () => {
   return (
     <>
       <Section title="Input">
-        <Grid cols={3}>
+        <Grid m={3}>
           <Col>
             <Row>
               <Select flex value={format} onChange={setFormat}>
@@ -177,7 +177,7 @@ export const Component: React.FC = () => {
         </Grid>
       </Section>
       <Section title="Output">
-        <Grid cols={3}>
+        <Grid m={3}>
           <Col>
             <Label title="Locale:" />
             <Input value={date?.toLocaleString()} readOnly />

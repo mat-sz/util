@@ -1,0 +1,18 @@
+.tabs {
+  display: flex;
+  margin-bottom: 0.4rem;
+
+  .tab {
+    background: var(--color-primary);
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    margin-right: 0.4rem;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover,
+    &.active {
+      background: var(--color-primary-soft);
+    }
+  }
+}

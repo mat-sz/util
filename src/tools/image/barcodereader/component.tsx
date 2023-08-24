@@ -39,7 +39,7 @@ export const Component: React.FC = () => {
   usePaste(updateFile);
 
   return (
-    <Grid cols={2}>
+    <Grid m={2}>
       <Col>
         <Label title="Input:" />
         <FileSelect file={file} onChange={updateFile} />
@@ -50,16 +50,11 @@ export const Component: React.FC = () => {
       <Col>
         <Label title="Format:" />
         <Input
-          type="text"
           value={result ? BarcodeFormat[result.getBarcodeFormat()] : undefined}
           readOnly
         />
         <Label title="Text:" />
-        <Input
-          type="text"
-          value={result ? result.getText() : undefined}
-          readOnly
-        />
+        <Input value={result ? result.getText() : undefined} readOnly />
       </Col>
     </Grid>
   );

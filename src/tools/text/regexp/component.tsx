@@ -34,7 +34,7 @@ export const Component: React.FC = () => {
     : undefined;
 
   return (
-    <Grid cols={2}>
+    <Grid m={2}>
       <Col>
         <Label title="Input:" />
         <TextareaRegExp value={regexp} onChange={setRegexp} />

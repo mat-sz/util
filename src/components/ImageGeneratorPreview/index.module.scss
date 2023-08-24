@@ -1,0 +1,14 @@
+.preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  canvas,
+  svg,
+  img {
+    padding: 20px;
+    background: white;
+    max-width: 100%;
+    border-radius: 5px;
+  }
+}

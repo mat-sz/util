@@ -5,22 +5,31 @@ import styles from './index.module.scss';
 
 interface GridProps {
   className?: string;
-  cols: number;
+  xs?: number;
+  s?: number;
+  m?: number;
+  l?: number;
+  xl?: number;
 }
 
 export const Grid: React.FC<React.PropsWithChildren<GridProps>> = ({
   className,
-  cols,
+  xs,
+  s,
+  m,
+  l,
+  xl,
   children,
 }) => {
   return (
     <div
       className={clsx(styles.grid, className)}
       style={{
-        display: 'grid',
-        gridTemplateColumns: `repeat(${cols}, 1fr)`,
-        gridGap: '10px',
-        flex: 1,
+        '--cols-xs': xs,
+        '--cols-s': s,
+        '--cols-m': m,
+        '--cols-l': l,
+        '--cols-xl': xl,
       }}
     >
       {children}

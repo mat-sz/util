@@ -29,7 +29,7 @@ export const Component: React.FC = () => {
   usePaste(updateFile);
 
   return (
-    <Grid cols={2}>
+    <Grid m={2}>
       <Col>
         <Label title="Input:" />
         <FileSelect file={file} onChange={updateFile} />
@@ -40,7 +40,7 @@ export const Component: React.FC = () => {
       <Col>
         <Label title="Output:" />
         {tags ? (
-          <Grid cols={3}>
+          <Grid m={3}>
             <div>Tag</div>
             <div>Raw value</div>
             <div>Value</div>

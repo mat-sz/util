@@ -1,11 +1,41 @@
 .grid {
-  min-height: 0;
-  max-height: 100%;
-  min-width: 0;
-  max-width: 100%;
+  --cols-xs: 1;
+  --cols-s: var(--cols-xs);
+  --cols-m: var(--cols-s);
+  --cols-l: var(--cols-m);
+  --cols-xl: var(--cols-l);
+  --cols: var(--cols-xs);
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  flex: 1;
 
   & > * {
     min-width: 0;
     max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .grid {
+    --cols: var(--cols-s);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .grid {
+    --cols: var(--cols-m);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .grid {
+    --cols: var(--cols-l);
+  }
+}
+
+@media screen and (min-width: 1536px) {
+  .grid {
+    --cols: var(--cols-xl);
   }
 }

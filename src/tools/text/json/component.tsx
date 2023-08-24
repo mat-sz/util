@@ -18,7 +18,7 @@ export const Component: React.FC = () => {
   const [value, setValue] = useState('');
 
   return (
-    <Grid cols={2}>
+    <Grid m={2}>
       <Col>
         <Label title="Input:" />
         <Textarea
