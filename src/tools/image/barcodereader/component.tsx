@@ -59,3 +59,5 @@ export const Component: React.FC = () => {
     </Grid>
   );
 };
+
+export default Component;

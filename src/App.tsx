@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 import styles from './App.module.scss';
@@ -17,18 +17,20 @@ export const App: React.FC = () => {
           <ToolSelect />
         </div>
         <div className={styles.tool}>
-          <Routes>
-            {toolGroups.map(group =>
-              group.tools.map(({ id, Component }) => (
-                <Route
-                  key={id}
-                  path={`/${group.id}/${id}`}
-                  Component={Component}
-                />
-              )),
-            )}
-            <Route path={'*'} index Component={Home} />
-          </Routes>
+          <Suspense fallback={<>Loading...</>}>
+            <Routes>
+              {toolGroups.map(group =>
+                group.tools.map(({ id, Component }) => (
+                  <Route
+                    key={id}
+                    path={`/${group.id}/${id}`}
+                    Component={Component}
+                  />
+                )),
+              )}
+              <Route path={'*'} index Component={Home} />
+            </Routes>
+          </Suspense>
         </div>
       </div>
     </BrowserRouter>
