@@ -6,6 +6,7 @@ import { Label } from '../../../components/Label/index.js';
 import { Textarea } from '../../../components/Textarea/index.js';
 import { Form } from '../../../components/Form/index.js';
 import { FormInput } from '../../../components/Form/FormInput.js';
+import { Section } from '../../../components/Section/index.js';
 
 export const Component: React.FC = () => {
   const [value, setValue] = useState('');
@@ -22,9 +23,9 @@ export const Component: React.FC = () => {
   })();
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
-        <Label title="Input:" />
+        <Section title="Input" />
         <Textarea variant="code" flex value={value} onChange={setValue} />
       </Col>
       <Col>

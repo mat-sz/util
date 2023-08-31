@@ -24,9 +24,9 @@ export const Component: React.FC = () => {
   usePaste(updateFile);
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
-        <Label title="Input:" />
+        <Section title="Input" />
         <FileSelect file={file} onChange={updateFile} />
         {!!previewUrl && file?.type.startsWith('image/') && (
           <ImagePreview url={previewUrl} />

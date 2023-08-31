@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 import { Grid } from '../../../components/Grid/index.js';
 import { Col } from '../../../components/Col/index.js';
-import { Label } from '../../../components/Label/index.js';
 import { Textarea } from '../../../components/Textarea/index.js';
 import { Select } from '../../../components/Select/index.js';
 import { Toggle } from '../../../components/Toggle/index.js';
 import { Row } from '../../../components/Row/index.js';
+import { Section } from '../../../components/Section/index.js';
 
 const sortFn: Record<string, (a: string, b: string) => number> = {
   az: (a, b) => a.localeCompare(b),
@@ -23,13 +23,13 @@ export const Component: React.FC = () => {
   const [order, setOrder] = useState('az');
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
-        <Label title="Input:" />
+        <Section title="Input" />
         <Textarea variant="code" flex value={text} onChange={setText} />
       </Col>
       <Col>
-        <Label title="Output:" />
+        <Section title="Output" />
         <Row>
           <Select value={order} onChange={setOrder}>
             <option value="az">A → Z (text; ascending; case-sensitive)</option>

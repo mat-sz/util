@@ -46,7 +46,7 @@ export const Component: React.FC = () => {
   )}% ${cmyk[2].toFixed(0)}% ${cmyk[3].toFixed(0)}%`;
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
         <Section title="Input">
           <Input value={value} onChange={setValue} />

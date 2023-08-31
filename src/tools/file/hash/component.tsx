@@ -8,6 +8,7 @@ import { Label } from '../../../components/Label/index.js';
 import { Input } from '../../../components/Input/index.js';
 import { FileSelect } from '../../../components/FileSelect/index.js';
 import { Info } from '../../../components/Info/index.js';
+import { Section } from '../../../components/Section/index.js';
 
 async function digestMessage(
   algorithm: AlgorithmIdentifier,
@@ -32,9 +33,9 @@ export const Component: React.FC = () => {
   const [hashes, setHashes] = useState<Hashes>();
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
-        <Label title="Input:" />
+        <Section title="Input" />
         <FileSelect
           file={file}
           onChange={async file => {

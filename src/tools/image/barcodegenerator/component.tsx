@@ -3,11 +3,11 @@ import bwipjs from 'bwip-js';
 
 import { Grid } from '../../../components/Grid/index.js';
 import { Col } from '../../../components/Col/index.js';
-import { Label } from '../../../components/Label/index.js';
 import { Textarea } from '../../../components/Textarea/index.js';
 import { Select } from '../../../components/Select/index.js';
 import { ImageGeneratorPreview } from '../../../components/ImageGeneratorPreview/index.js';
 import { symdesc } from '../../../helpers/bwip.js';
+import { Section } from '../../../components/Section/index.js';
 
 export const Component: React.FC = () => {
   const [text, setText] = useState(symdesc['code128'].text);
@@ -29,9 +29,9 @@ export const Component: React.FC = () => {
   }, [text, bcid]);
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
-        <Label title="Input:" />
+        <Section title="Input" />
         <Select
           value={bcid}
           onChange={value => {
@@ -48,7 +48,7 @@ export const Component: React.FC = () => {
         <Textarea value={text} onChange={setText} />
       </Col>
       <Col>
-        <Label title="Code:" />
+        <Section title="Code" />
         <ImageGeneratorPreview>
           <canvas ref={canvasRef} />
         </ImageGeneratorPreview>

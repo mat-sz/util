@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import { Grid } from '../../../components/Grid/index.js';
 import { Col } from '../../../components/Col/index.js';
-import { Label } from '../../../components/Label/index.js';
 import { Textarea } from '../../../components/Textarea/index.js';
+import { Section } from '../../../components/Section/index.js';
 
 function formatJson(str: string): string {
   try {
@@ -18,9 +18,9 @@ export const Component: React.FC = () => {
   const [value, setValue] = useState('');
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
-        <Label title="Input:" />
+        <Section title="Input" />
         <Textarea
           variant="code"
           flex
@@ -30,7 +30,7 @@ export const Component: React.FC = () => {
         />
       </Col>
       <Col>
-        <Label title="Output:" />
+        <Section title="Output" />
         <Textarea
           variant="code"
           flex

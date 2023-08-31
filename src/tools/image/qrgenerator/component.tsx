@@ -3,9 +3,9 @@ import { BrowserQRCodeSvgWriter } from '@zxing/browser';
 
 import { Grid } from '../../../components/Grid/index.js';
 import { Col } from '../../../components/Col/index.js';
-import { Label } from '../../../components/Label/index.js';
 import { Textarea } from '../../../components/Textarea/index.js';
 import { ImageGeneratorPreview } from '../../../components/ImageGeneratorPreview/index.js';
+import { Section } from '../../../components/Section/index.js';
 
 export const Component: React.FC = () => {
   const [text, setText] = useState('https://util.to');
@@ -21,13 +21,13 @@ export const Component: React.FC = () => {
   }, [text]);
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
-        <Label title="Input:" />
+        <Section title="Input:" />
         <Textarea value={text} onChange={setText} />
       </Col>
       <Col>
-        <Label title="Code:" />
+        <Section title="Code:" />
         <ImageGeneratorPreview>
           <div ref={divRef}></div>
         </ImageGeneratorPreview>

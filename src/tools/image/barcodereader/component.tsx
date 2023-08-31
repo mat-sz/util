@@ -4,11 +4,11 @@ import { BarcodeFormat, Result } from '@zxing/library';
 
 import { Grid } from '../../../components/Grid/index.js';
 import { Col } from '../../../components/Col/index.js';
-import { Label } from '../../../components/Label/index.js';
 import { FileSelect } from '../../../components/FileSelect/index.js';
 import { ImagePreview } from '../../../components/ImagePreview/index.js';
 import { Input } from '../../../components/Input/index.js';
 import { usePaste } from '../../../hooks/usePaste.js';
+import { Section } from '../../../components/Section/index.js';
 
 export const Component: React.FC = () => {
   const [file, setFile] = useState<File>();
@@ -39,22 +39,26 @@ export const Component: React.FC = () => {
   usePaste(updateFile);
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
-        <Label title="Input:" />
+        <Section title="Input" />
         <FileSelect file={file} onChange={updateFile} />
         {!!dataUrl && file?.type.startsWith('image/') && (
           <ImagePreview url={dataUrl} />
         )}
       </Col>
       <Col>
-        <Label title="Format:" />
-        <Input
-          value={result ? BarcodeFormat[result.getBarcodeFormat()] : undefined}
-          readOnly
-        />
-        <Label title="Text:" />
-        <Input value={result ? result.getText() : undefined} readOnly />
+        <Section title="Format">
+          <Input
+            value={
+              result ? BarcodeFormat[result.getBarcodeFormat()] : undefined
+            }
+            readOnly
+          />
+        </Section>
+        <Section title="Text">
+          <Input value={result ? result.getText() : undefined} readOnly />
+        </Section>
       </Col>
     </Grid>
   );

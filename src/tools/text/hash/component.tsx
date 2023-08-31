@@ -16,6 +16,7 @@ import { Col } from '../../../components/Col/index.js';
 import { Label } from '../../../components/Label/index.js';
 import { Textarea } from '../../../components/Textarea/index.js';
 import { Input } from '../../../components/Input/index.js';
+import { Section } from '../../../components/Section/index.js';
 
 const functions = [
   {
@@ -56,9 +57,9 @@ export const Component: React.FC = () => {
   const [plaintext, setPlaintext] = useState('');
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
-        <Label title="Input:" />
+        <Section title="Input" />
         <Textarea
           variant="code"
           flex

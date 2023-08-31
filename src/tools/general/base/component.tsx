@@ -10,7 +10,7 @@ export const Component: React.FC = () => {
   const [value, setValue] = useState(0);
   const [base, setBase] = useState(36);
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
         <Label title="Binary (2):" />
         <Input

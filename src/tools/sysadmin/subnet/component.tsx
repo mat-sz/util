@@ -97,7 +97,7 @@ export const Component: React.FC = () => {
   const netInt6 = valid6 ? int6 & maskInt6 : undefined;
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
         <Section title="IPv4">
           <Label title="Subnet:" />

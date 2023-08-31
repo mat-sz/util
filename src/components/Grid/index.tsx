@@ -10,6 +10,7 @@ interface GridProps {
   m?: number;
   l?: number;
   xl?: number;
+  flex?: boolean;
 }
 
 export const Grid: React.FC<React.PropsWithChildren<GridProps>> = ({
@@ -19,11 +20,12 @@ export const Grid: React.FC<React.PropsWithChildren<GridProps>> = ({
   m,
   l,
   xl,
+  flex,
   children,
 }) => {
   return (
     <div
-      className={clsx(styles.grid, className)}
+      className={clsx(styles.grid, className, { [styles.flex]: flex })}
       style={{
         '--cols-xs': xs,
         '--cols-s': s,

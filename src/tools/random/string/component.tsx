@@ -51,7 +51,7 @@ export const Component: React.FC = () => {
   }, [refresh]);
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
         <Section title="Settings">
           <Form

@@ -11,6 +11,7 @@ import { Row } from '../../../components/Row/index.js';
 import { Select } from '../../../components/Select/index.js';
 import { Button } from '../../../components/Button/index.js';
 import { Input } from '../../../components/Input/index.js';
+import { Section } from '../../../components/Section/index.js';
 
 const ObjectId = (h = 16, s = (s: number) => Math.floor(s).toString(h)) =>
   s(Date.now() / 1000) +
@@ -35,26 +36,27 @@ export const Component: React.FC = () => {
   const [info, setInfo] = useState({ type: 'Invalid' });
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
-        <Label title="Parse:" />
-        <Input
-          value={value}
-          onChange={value => {
-            setValue(value);
+        <Section title="Parse">
+          <Input
+            value={value}
+            onChange={value => {
+              setValue(value);
 
-            try {
-              setInfo({ type: `UUID v${version(value)}` });
-            } catch {
-              setInfo({ type: 'Invalid' });
-            }
-          }}
-        />
-        <Label title="Type:" />
-        <Input value={info.type} readOnly />
+              try {
+                setInfo({ type: `UUID v${version(value)}` });
+              } catch {
+                setInfo({ type: 'Invalid' });
+              }
+            }}
+          />
+          <Label title="Type:" />
+          <Input value={info.type} readOnly />
+        </Section>
       </Col>
       <Col>
-        <Label title="Generate:" />
+        <Section title="Generate" />
         <Row>
           <Select flex value={type} onChange={setType}>
             {Object.keys(generateFns).map(key => (

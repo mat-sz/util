@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 
 import { Grid } from '../../../components/Grid/index.js';
 import { Col } from '../../../components/Col/index.js';
-import { Label } from '../../../components/Label/index.js';
 import {
   TextareaRegExp,
   TextareaRegExpValue,
 } from '../../../components/Textarea/RegExp.js';
 import { TextareaHighlights } from '../../../components/Textarea/Highlights.js';
+import { Section } from '../../../components/Section/index.js';
 
 interface RegExpIndicesArray extends RegExpExecArray {
   indices?: Array<[number, number]>;
@@ -34,9 +34,9 @@ export const Component: React.FC = () => {
     : undefined;
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
-        <Label title="Input:" />
+        <Section title="Input" />
         <TextareaRegExp value={regexp} onChange={setRegexp} />
         <TextareaHighlights
           value={text}
@@ -46,7 +46,7 @@ export const Component: React.FC = () => {
         />
       </Col>
       <Col>
-        <Label title="Output:" />
+        <Section title="Output" />
         {result ? (
           <pre>{JSON.stringify(result)}</pre>
         ) : (

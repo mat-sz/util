@@ -3,11 +3,11 @@ import ExifReader from 'exifreader';
 
 import { Grid } from '../../../components/Grid/index.js';
 import { Col } from '../../../components/Col/index.js';
-import { Label } from '../../../components/Label/index.js';
 import { FileSelect } from '../../../components/FileSelect/index.js';
 import { ImagePreview } from '../../../components/ImagePreview/index.js';
 import { Input } from '../../../components/Input/index.js';
 import { usePaste } from '../../../hooks/usePaste.js';
+import { Section } from '../../../components/Section/index.js';
 
 export const Component: React.FC = () => {
   const [file, setFile] = useState<File>();
@@ -29,16 +29,16 @@ export const Component: React.FC = () => {
   usePaste(updateFile);
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
-        <Label title="Input:" />
+        <Section title="Input" />
         <FileSelect file={file} onChange={updateFile} />
         {!!previewUrl && file?.type.startsWith('image/') && (
           <ImagePreview url={previewUrl} />
         )}
       </Col>
       <Col>
-        <Label title="Output:" />
+        <Section title="Output" />
         {tags ? (
           <Grid m={3}>
             <div>Tag</div>

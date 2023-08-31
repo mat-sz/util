@@ -17,7 +17,7 @@ export const Component: React.FC = () => {
   const [value, setValue] = useState('');
 
   return (
-    <Grid m={2}>
+    <Grid m={2} flex>
       <Col>
         <Section title="Input">
           <Textarea variant="code" flex value={value} onChange={setValue} />
