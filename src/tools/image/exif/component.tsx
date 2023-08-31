@@ -12,17 +12,14 @@ import { Section } from '../../../components/Section/index.js';
 export const Component: React.FC = () => {
   const [file, setFile] = useState<File>();
   const [tags, setTags] = useState<ExifReader.Tags>();
-  const [previewUrl, setPreviewUrl] = useState<string>();
 
   const updateFile = async (file?: File) => {
     setFile(file);
-    setPreviewUrl(undefined);
     setTags(undefined);
     if (!file) {
       return;
     }
 
-    setPreviewUrl(URL.createObjectURL(file));
     setTags(await ExifReader.load(file));
   };
 
@@ -33,9 +30,7 @@ export const Component: React.FC = () => {
       <Col>
         <Section title="Input" />
         <FileSelect file={file} onChange={updateFile} />
-        {!!previewUrl && file?.type.startsWith('image/') && (
-          <ImagePreview url={previewUrl} />
-        )}
+        <ImagePreview file={file} />
       </Col>
       <Col>
         <Section title="Output" />

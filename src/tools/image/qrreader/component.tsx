@@ -12,7 +12,6 @@ import { Section } from '../../../components/Section/index.js';
 
 export const Component: React.FC = () => {
   const [file, setFile] = useState<File>();
-  const [dataUrl, setDataUrl] = useState<string>();
 
   const [result, setResult] = useState<Result>();
 
@@ -22,7 +21,6 @@ export const Component: React.FC = () => {
 
     if (file) {
       const url = URL.createObjectURL(file);
-      setDataUrl(url);
 
       if (file.type.startsWith('image/') && url) {
         try {
@@ -43,9 +41,7 @@ export const Component: React.FC = () => {
       <Col>
         <Section title="Input" />
         <FileSelect file={file} onChange={updateFile} />
-        {!!dataUrl && file?.type.startsWith('image/') && (
-          <ImagePreview url={dataUrl} />
-        )}
+        <ImagePreview file={file} />
       </Col>
       <Col>
         <Section title="Text" />

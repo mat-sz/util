@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { toFile, toDataURL } from 'fitool';
+import { toFile } from 'fitool';
 
 import { Grid } from '../../../components/Grid/index.js';
 import { Col } from '../../../components/Col/index.js';
@@ -17,7 +17,7 @@ export const Component: React.FC = () => {
     setFile(file);
 
     if (file) {
-      setDataUrl(await toDataURL(file));
+      setDataUrl(URL.createObjectURL(file));
     }
   };
 
@@ -28,9 +28,7 @@ export const Component: React.FC = () => {
       <Col>
         <Section title="Input" />
         <FileSelect file={file} onChange={updateFile} />
-        {!!dataUrl && file?.type.startsWith('image/') && (
-          <ImagePreview url={dataUrl} />
-        )}
+        <ImagePreview file={file} />
       </Col>
       <Col>
         <Section title="Output" />

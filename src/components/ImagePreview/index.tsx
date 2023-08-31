@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { IoDownload } from 'react-icons/io5/index.js';
 import { download } from 'fitool';
 
@@ -7,7 +13,7 @@ import { ControlsWrapper } from '../ControlsWrapper/index.js';
 import { Button } from '../Button/index.js';
 
 interface ImagePreviewProps {
-  url: string;
+  file?: File;
 }
 
 interface Position {
@@ -15,7 +21,7 @@ interface Position {
   y: number;
 }
 
-export const ImagePreview: React.FC<ImagePreviewProps> = ({ url }) => {
+export const ImagePreview: React.FC<ImagePreviewProps> = ({ file }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const panOffsetRef = useRef<Position>({ x: 0, y: 0 });
@@ -49,6 +55,15 @@ export const ImagePreview: React.FC<ImagePreviewProps> = ({ url }) => {
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, [resetScale]);
+
+  const url = useMemo(
+    () => (file ? URL.createObjectURL(file) : undefined),
+    [file],
+  );
+
+  if (!url || !file?.type.startsWith('image/')) {
+    return null;
+  }
 
   const zoom = (e: React.WheelEvent) => {
     const wrapperRect = wrapperRef.current!.getBoundingClientRect();
