@@ -1,11 +1,12 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Colorful,
   Wheel,
   EditableInputHSLA,
   EditableInputRGBA,
-  color,
+  HsvaColor,
 } from '@uiw/react-color';
+import Color from 'color';
 
 import { Grid } from '../../../components/Grid/index.js';
 import { Col } from '../../../components/Col/index.js';
@@ -13,10 +14,36 @@ import { Section } from '../../../components/Section/index.js';
 import { Input } from '../../../components/Input/index.js';
 import { Label } from '../../../components/Label/index.js';
 
+function tryColor(value: string) {
+  try {
+    return Color(value);
+  } catch {
+    return Color('#000000');
+  }
+}
+
 export const Component: React.FC = () => {
   const [value, setValue] = useState('#128ad0');
 
-  const result = useMemo(() => color(value), [value]);
+  const tempColor = tryColor(value);
+  const hsv = tempColor.hsv();
+  const hsva: HsvaColor = { ...hsv.object(), a: hsv.alpha() } as any;
+  const color = tempColor.alpha(Math.round(tempColor.alpha() * 100) / 100);
+
+  const lab = color.lab().array();
+  const labStr = `${lab[0].toFixed(0)}% ${lab[1].toFixed(0)} ${lab[2].toFixed(
+    0,
+  )}`;
+
+  const lch = color.lch().array();
+  const lchStr = `${lch[0].toFixed(0)}% ${lch[1].toFixed(0)} ${lch[2].toFixed(
+    0,
+  )}`;
+
+  const cmyk = color.cmyk().array();
+  const cmykStr = `${cmyk[0].toFixed(0)}% ${cmyk[1].toFixed(
+    0,
+  )}% ${cmyk[2].toFixed(0)}% ${cmyk[3].toFixed(0)}%`;
 
   return (
     <Grid m={2}>
@@ -25,25 +52,22 @@ export const Component: React.FC = () => {
           <Input value={value} onChange={setValue} />
           <Grid m={3}>
             <Col center>
-              <Colorful
-                color={result.hexa}
-                onChange={color => setValue(color.hexa)}
-              />
+              <Colorful color={hsva} onChange={color => setValue(color.hexa)} />
             </Col>
             <Col center>
               <Wheel
                 style={{ overflow: 'hidden' }}
-                color={result.hexa}
+                color={hsva}
                 onChange={color => setValue(color.hexa)}
               />
             </Col>
             <Col>
               <EditableInputHSLA
-                hsva={result.hsva}
+                hsva={hsva}
                 onChange={color => setValue(color.hexa)}
               />
               <EditableInputRGBA
-                hsva={result.hsva}
+                hsva={hsva}
                 onChange={color => setValue(color.hexa)}
               />
             </Col>
@@ -53,77 +77,46 @@ export const Component: React.FC = () => {
       <Col>
         <Section title="Output">
           <Label title="Hex" />
-          <Input value={result.hex} readOnly />
+          <Input value={color.hex()} readOnly />
           <Label title="Hex + alpha" />
-          <Input value={result.hexa} readOnly />
+          <Input value={color.hexa()} readOnly />
           <Label title="RGB" />
-          <Input
-            value={
-              result.rgb
-                ? `rgb(${result.rgb.r}, ${result.rgb.g}, ${result.rgb.b})`
-                : undefined
-            }
-            readOnly
-          />
-          <Label title="RGBA" />
-          <Input
-            value={
-              result.rgba
-                ? `rgba(${result.rgba.r}, ${result.rgba.g}, ${
-                    result.rgba.b
-                  }, ${result.rgba.a.toFixed(2)})`
-                : undefined
-            }
-            readOnly
-          />
+          <Input value={color.rgb().string(0)} readOnly />
           <Label title="HSL" />
-          <Input
-            value={
-              result.hsl
-                ? `hsl(${Math.round(result.hsl.h)}, ${Math.round(
-                    result.hsl.s,
-                  )}%, ${Math.round(result.hsl.l)}%)`
-                : undefined
-            }
-            readOnly
-          />
-          <Label title="HSLA" />
-          <Input
-            value={
-              result.hsla
-                ? `hsla(${Math.round(result.hsla.h)}, ${Math.round(
-                    result.hsla.s,
-                  )}%, ${Math.round(result.hsla.l)}%, ${Math.round(
-                    result.hsla.a * 100,
-                  )}%)`
-                : undefined
-            }
-            readOnly
-          />
+          <Input value={color.hsl().string(0)} readOnly />
           <Label title="HSV/HSB" />
+          <Input value={color.hsv().string(0)} readOnly />
+          <Label title="HWB" />
+          <Input value={color.hwb().string(0)} readOnly />
+          <Label title="LAB" />
           <Input
             value={
-              result.hsv
-                ? `hsv(${Math.round(result.hsv.h)}, ${Math.round(
-                    result.hsv.s,
-                  )}%, ${Math.round(result.hsv.v)}%)`
-                : undefined
+              color.alpha() === 1
+                ? `lab(${labStr})`
+                : `lab(${labStr} / ${color.alpha()})`
             }
             readOnly
           />
-          <Label title="HSVA/HSBA" />
+          <Label title="LCH" />
           <Input
             value={
-              result.hsva
-                ? `hsva(${Math.round(result.hsva.h)}, ${Math.round(
-                    result.hsva.s,
-                  )}%, ${Math.round(result.hsva.v)}%, ${Math.round(
-                    result.hsva.a * 100,
-                  )}%)`
-                : undefined
+              color.alpha() === 1
+                ? `lch(${lchStr})`
+                : `lch(${lchStr} / ${color.alpha()})`
             }
             readOnly
           />
+          <Label title="CMYK" />
+          <Input
+            value={
+              color.alpha() === 1
+                ? `device-cmyk(${cmykStr})`
+                : `device-cmyk(${cmykStr} / ${color.alpha()})`
+            }
+            readOnly
+          />
+          <Label title="Color name" />
+          <Input value={color.keyword()} readOnly />
         </Section>
       </Col>
     </Grid>
