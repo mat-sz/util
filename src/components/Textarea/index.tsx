@@ -8,6 +8,7 @@ const CodeEditor = _CodeEditor as any;
 import styles from './index.module.scss';
 import { Button } from '../Button/index.js';
 import { copy } from '../../helpers/copy.js';
+import { ControlsWrapper } from '../ControlsWrapper/index.js';
 
 interface InputProps
   extends Omit<
@@ -37,45 +38,46 @@ export const Textarea: React.FC<InputProps> = ({
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   return (
-    <div
+    <ControlsWrapper
       className={clsx(styles.wrapper, className, {
         [styles.flex]: flex,
         [styles.readonly]: props.readOnly,
       })}
-      onClick={() => textareaRef.current?.focus()}
-    >
-      <span className={styles.controls}>
-        <Button
-          icon={<IoCopy />}
-          onClick={() => value && copy(`${value}`)}
-          title="Copy"
-        />
-        {!props.readOnly && (
+      controls={
+        <>
           <Button
-            icon={<IoClipboard />}
-            onClick={async () => {
-              try {
-                const text = await navigator.clipboard.readText();
-                if (text) {
-                  onChange?.(text);
+            icon={<IoCopy />}
+            onClick={() => value && copy(`${value}`)}
+            title="Copy"
+          />
+          {!props.readOnly && (
+            <Button
+              icon={<IoClipboard />}
+              onClick={async () => {
+                try {
+                  const text = await navigator.clipboard.readText();
+                  if (text) {
+                    onChange?.(text);
+                  }
+                } catch (e) {
+                  //
                 }
-              } catch (e) {
-                //
-              }
-            }}
-            title="Paste"
-          />
-        )}
-        {value && !props.readOnly && (
-          <Button
-            icon={<IoClose />}
-            onClick={() => {
-              onChange?.('');
-            }}
-            title="Reset"
-          />
-        )}
-      </span>
+              }}
+              title="Paste"
+            />
+          )}
+          {value && !props.readOnly && (
+            <Button
+              icon={<IoClose />}
+              onClick={() => {
+                onChange?.('');
+              }}
+              title="Reset"
+            />
+          )}
+        </>
+      }
+    >
       <div className={styles.input}>
         {variant === 'code' && (
           <CodeEditor
@@ -99,6 +101,6 @@ export const Textarea: React.FC<InputProps> = ({
           />
         )}
       </div>
-    </div>
+    </ControlsWrapper>
   );
 };

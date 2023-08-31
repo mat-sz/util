@@ -13,6 +13,7 @@ const CodeEditor = _CodeEditor as any;
 import styles from './index.module.scss';
 import { Button } from '../Button/index.js';
 import { copy } from '../../helpers/copy.js';
+import { ControlsWrapper } from '../ControlsWrapper/index.js';
 
 const regexpFlags = {
   g: {
@@ -102,41 +103,45 @@ export const TextareaRegExp: React.FC<InputProps> = ({
   const source = value?.source || '';
 
   return (
-    <div
+    <ControlsWrapper
       className={clsx(styles.wrapper, styles.wrapperRegexp, className, {
         [styles.flex]: flex,
         [styles.readonly]: props.readOnly,
       })}
-      onClick={() => textareaRef.current?.focus()}
-    >
-      <span className={styles.controls}>
-        {props.readOnly && (
-          <Button icon={<IoCopy />} onClick={() => value && copy(`${value}`)} />
-        )}
-        {!props.readOnly && (
-          <Button
-            icon={<IoClipboard />}
-            onClick={async () => {
-              try {
-                const text = await navigator.clipboard.readText();
-                if (text) {
-                  onChange?.(regexpFromString(text));
+      controls={
+        <>
+          {props.readOnly && (
+            <Button
+              icon={<IoCopy />}
+              onClick={() => value && copy(`${value}`)}
+            />
+          )}
+          {!props.readOnly && (
+            <Button
+              icon={<IoClipboard />}
+              onClick={async () => {
+                try {
+                  const text = await navigator.clipboard.readText();
+                  if (text) {
+                    onChange?.(regexpFromString(text));
+                  }
+                } catch (e) {
+                  //
                 }
-              } catch (e) {
-                //
-              }
-            }}
-          />
-        )}
-        {value && !props.readOnly && (
-          <Button
-            icon={<IoClose />}
-            onClick={() => {
-              onChange?.({ source: '', flags: 'g' });
-            }}
-          />
-        )}
-      </span>
+              }}
+            />
+          )}
+          {value && !props.readOnly && (
+            <Button
+              icon={<IoClose />}
+              onClick={() => {
+                onChange?.({ source: '', flags: 'g' });
+              }}
+            />
+          )}
+        </>
+      }
+    >
       <div className={styles.regexp}>
         <div className={styles.regexpDelimiter}>/</div>
         <CodeEditor
@@ -183,6 +188,6 @@ export const TextareaRegExp: React.FC<InputProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </ControlsWrapper>
   );
 };

@@ -1,6 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { IoDownload } from 'react-icons/io5/index.js';
+import { download } from 'fitool';
 
 import styles from './index.module.scss';
+import { ControlsWrapper } from '../ControlsWrapper/index.js';
+import { Button } from '../Button/index.js';
 
 interface ImagePreviewProps {
   url: string;
@@ -81,33 +85,48 @@ export const ImagePreview: React.FC<ImagePreviewProps> = ({ url }) => {
   };
 
   return (
-    <div
-      className={styles.preview}
-      ref={wrapperRef}
-      onWheel={zoom}
-      onPointerMove={pan}
-      onPointerDown={e => {
-        panOffsetRef.current = {
-          x: imageOffset.x - e.clientX,
-          y: imageOffset.y - e.clientY,
-        };
-        setPanning(true);
-      }}
-      onPointerUp={endPanning}
-      onPointerLeave={endPanning}
-      onDoubleClick={resetScale}
+    <ControlsWrapper
+      className={styles.flex}
+      controls={
+        <>
+          {url && (
+            <Button
+              icon={<IoDownload />}
+              title="Download"
+              onClick={() => download(url, 'preview.jpg')}
+            />
+          )}
+        </>
+      }
     >
-      <img
-        src={url}
-        ref={imageRef}
-        draggable={false}
-        onLoad={() => {
-          resetScale();
+      <div
+        className={styles.preview}
+        ref={wrapperRef}
+        onWheel={zoom}
+        onPointerMove={pan}
+        onPointerDown={e => {
+          panOffsetRef.current = {
+            x: imageOffset.x - e.clientX,
+            y: imageOffset.y - e.clientY,
+          };
+          setPanning(true);
         }}
-        style={{
-          transform: `translate(${imageOffset.x}px, ${imageOffset.y}px) scale(${scale}) `,
-        }}
-      />
-    </div>
+        onPointerUp={endPanning}
+        onPointerLeave={endPanning}
+        onDoubleClick={resetScale}
+      >
+        <img
+          src={url}
+          ref={imageRef}
+          draggable={false}
+          onLoad={() => {
+            resetScale();
+          }}
+          style={{
+            transform: `translate(${imageOffset.x}px, ${imageOffset.y}px) scale(${scale}) `,
+          }}
+        />
+      </div>
+    </ControlsWrapper>
   );
 };

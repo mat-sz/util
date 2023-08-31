@@ -1,31 +1,6 @@
 .wrapper {
-  background: var(--color-bg-dark);
-  color: var(--color-fg);
-  border: none;
-  border-radius: 5px;
-
   &:not(.wrapperRegexp) {
     min-height: 600px;
-  }
-
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-
-  .controls {
-    display: flex;
-    align-items: center;
-
-    background: var(--color-primary);
-    padding: 5px 10px;
-    border-start-start-radius: 5px;
-    border-start-end-radius: 5px;
-  }
-
-  button {
-    background: none;
-    padding: 5px;
-    height: auto;
   }
 
   .textarea {
@@ -48,6 +23,7 @@
     height: 100%;
     max-height: 100%;
     min-height: 0;
+    display: flex;
   }
 
   &:not(:last-child) {

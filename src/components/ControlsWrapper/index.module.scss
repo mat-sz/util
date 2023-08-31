@@ -1,0 +1,25 @@
+.wrapper {
+  background: var(--color-bg-dark);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .controls {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    background: var(--color-primary);
+    padding: 5px 10px;
+    border-start-start-radius: 5px;
+    border-start-end-radius: 5px;
+
+    button {
+      background: none;
+      padding: 5px;
+      height: auto;
+    }
+  }
+}

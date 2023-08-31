@@ -5,6 +5,7 @@ import { IoClipboard, IoClose, IoCopy } from 'react-icons/io5/index.js';
 import styles from './index.module.scss';
 import { Button } from '../Button/index.js';
 import { copy } from '../../helpers/copy.js';
+import { ControlsWrapper } from '../ControlsWrapper/index.js';
 
 interface InputProps
   extends Omit<
@@ -46,41 +47,45 @@ export const TextareaHighlights: React.FC<InputProps> = ({
   }
 
   return (
-    <div
+    <ControlsWrapper
       className={clsx(styles.wrapper, className, {
         [styles.flex]: flex,
         [styles.readonly]: props.readOnly,
       })}
-      onClick={() => textareaRef.current?.focus()}
-    >
-      <span className={styles.controls}>
-        {props.readOnly && (
-          <Button icon={<IoCopy />} onClick={() => value && copy(`${value}`)} />
-        )}
-        {!props.readOnly && (
-          <Button
-            icon={<IoClipboard />}
-            onClick={async () => {
-              try {
-                const text = await navigator.clipboard.readText();
-                if (text) {
-                  onChange?.(text);
+      controls={
+        <>
+          {props.readOnly && (
+            <Button
+              icon={<IoCopy />}
+              onClick={() => value && copy(`${value}`)}
+            />
+          )}
+          {!props.readOnly && (
+            <Button
+              icon={<IoClipboard />}
+              onClick={async () => {
+                try {
+                  const text = await navigator.clipboard.readText();
+                  if (text) {
+                    onChange?.(text);
+                  }
+                } catch (e) {
+                  //
                 }
-              } catch (e) {
-                //
-              }
-            }}
-          />
-        )}
-        {value && !props.readOnly && (
-          <Button
-            icon={<IoClose />}
-            onClick={() => {
-              onChange?.('');
-            }}
-          />
-        )}
-      </span>
+              }}
+            />
+          )}
+          {value && !props.readOnly && (
+            <Button
+              icon={<IoClose />}
+              onClick={() => {
+                onChange?.('');
+              }}
+            />
+          )}
+        </>
+      }
+    >
       <div className={styles.box}>
         <div className={styles.layers} ref={layersRef}>
           {layers.map((layer, i) => (
@@ -134,6 +139,6 @@ export const TextareaHighlights: React.FC<InputProps> = ({
           }}
         />
       </div>
-    </div>
+    </ControlsWrapper>
   );
 };
