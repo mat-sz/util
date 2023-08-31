@@ -9,14 +9,6 @@ export function usePaste(onFile: (file: File) => void) {
 
   useEffect(() => {
     const onPaste = async (e: ClipboardEvent) => {
-      const element = e.target as HTMLElement;
-      if (
-        document.body.contains(element) &&
-        (element.tagName === 'TEXTAREA' || element.tagName === 'INPUT')
-      ) {
-        return;
-      }
-
       for (const item of e.clipboardData!.items) {
         const file = item.getAsFile();
 
