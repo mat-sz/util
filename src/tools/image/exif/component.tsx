@@ -35,7 +35,7 @@ export const Component: React.FC = () => {
       <Col>
         <Section title="Output" />
         {tags ? (
-          <Grid m={3}>
+          <Grid xs={3}>
             <div>Tag</div>
             <div>Raw value</div>
             <div>Value</div>
