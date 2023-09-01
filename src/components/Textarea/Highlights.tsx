@@ -107,7 +107,6 @@ export const TextareaHighlights: React.FC<InputProps> = ({
           ref={textareaRef}
           spellCheck={false}
           onScroll={e => {
-            console.log('onscroll', e);
             if (!layersRef.current) {
               return;
             }
