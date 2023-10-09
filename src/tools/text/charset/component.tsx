@@ -86,29 +86,18 @@ const encodings = {
 };
 
 export const Component: React.FC = () => {
-  const [inputEncoding, setInputEncoding] = useState('utf8');
   const [outputEncoding, setOutputEncoding] = useState('utf16');
   const [input, setInput] = useState('test');
   const [output, setOutput] = useState<Buffer>();
 
   useEffect(() => {
-    const str = iconv.decode(Buffer.from(input, 'utf8'), inputEncoding);
-    setOutput(iconv.encode(str, outputEncoding));
-  }, [input, setOutput, inputEncoding, outputEncoding]);
+    setOutput(iconv.encode(input, outputEncoding));
+  }, [input, setOutput, outputEncoding]);
 
   return (
     <Grid m={2} flex>
       <Col>
-        <Section title="Input" />
-        <Row>
-          <Select flex value={inputEncoding} onChange={setInputEncoding}>
-            {Object.entries(encodings).map(([key, name]) => (
-              <option value={key} key={key}>
-                {name}
-              </option>
-            ))}
-          </Select>
-        </Row>
+        <Section title="Input (UTF-8)" />
         <Textarea variant="code" flex value={input} onChange={setInput} />
       </Col>
       <Col>
